@@ -50,5 +50,9 @@ ICPRFPSCVW       scope change 4.13%     committed vs delivered 99.00% and       
     * Scope change: are tickets being added or removed after sprint has started?
     * Commited vs delivered: when the sprint finished, did the team finished all the tickets they committed to?
     * Velocity: how many story points the team is able to complete per sprint?
+* **BugsTime**: prints the average time to fix a bug in production by priority.
+    * Blocker: A++(Bloqueo)
+    * High: A+(Crítico) A(Muy Importante)
+    * Low: B(Importante) C(Minor)
  
       
