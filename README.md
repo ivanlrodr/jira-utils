@@ -11,48 +11,70 @@ Collection of python scripts to generate some reports from Jira.
     ```
 
 ## Before Running the Scripts
-You need to call the scripts using your username and password. The scripts read these information from environment variables so there are two options: create your own environment variables or overwriting these commands with your user and password:
+You need to call the scripts using your username and password and personal tokens. The scripts read these information from environment variables so there are two options: create your own environment variables or overwriting these commands with your personal information. You will need to update user and password in *JiraMetrics.py*, the token for sonar in *Sonar.py* and the Github token in *GitHub.py*.
 
 Before:
 
 ```python
 user = os.getenv('USUARIO')
 password = os.getenv('PASSWORD')
+token = os.getenv('SONAR_TOKEN')
 ```
 After:
 ```python
 user = 'myUserName'
 password = 'secretPassword'
+token = 'xo3dñlxoxoo45'
 ```
 
-You should also edit the list of projects and, instead of the given ones, add the Jira keys of your own projects:
+You should also edit the list of projects with their artifacts (dictionary *artifacts*) and their Jira keys (dictionary *jira_keys*) in *PrintMetrics.py*
 ```python
-#projects = ['JOINLIFEMG','TESTGMANA', 'TRACEMUL', 'ICPRFPSCVW']
-projects = ['MY_JIRA_PROJECT']
+# artifacts = { 'Project Name' : { 'repo-name' : 'sonar-repo-name'}}
+artifacts = {'Bloqueos' : {'mic-compliance': 'inditexcodingfashion_MICCOMPLIA'}}
+# jira_keys = { 'Project Name' : 'jira-key''}
+jira_keys = {'Bloqueos' : 'TRACEMUL'}
 ```
 
 ## Running the Scripts
-It is enough to call them like the following example:
+Scripts can be called individually:
 ```bash
-python3 Sprint.py
+python3 JiraMetrics.py
 ```
-The information for your proeyects will be displayed:
+The information for the projects included in the main function will be displayed:
 ```bash
-ivan@PRT-ILOPEZ:~/repos/ivan$ /bin/python3 /home/ivan/repos/ivan/Sprint.py
-JOINLIFEMG       scope change 10.38%    committed vs delivered 108.71% and      velocity 30.00
-TESTGMANA        scope change 13.59%    committed vs delivered 66.89% and       velocity 27.50
-TRACEMUL         scope change -3.09%    committed vs delivered 82.47% and       velocity 18.50
-ICPRFPSCVW       scope change 4.13%     committed vs delivered 99.00% and       velocity 64.17
+ivan@PRT-ILOPEZ:~/repos/jira-utils$ python3 JiraMetrics.py 
+TRACEMUL         scope change -2.58%    committed vs delivered 80.95% and       velocity 19.67
+TRACEMUL: bug types ("A++(Bloqueo)") during last 90 days. Number of incidences 0
+TRACEMUL: bug types ("A+(Crítico)", "A(Muy Importante)") during last 90 days. Number of incidences 1
+TRACEMUL: bug types ("B(Importante)", "C(Menor)") during last 90 days. Number of incidences 5
 ```
 
 ## Reports
-* **Sprints**: a report about key metrics of the last 6 sprints:
-    * Scope change: are tickets being added or removed after sprint has started?
-    * Commited vs delivered: when the sprint finished, did the team finished all the tickets they committed to?
-    * Velocity: how many story points the team is able to complete per sprint?
-* **BugsTime**: prints the average time to fix a bug in production by priority.
-    * Blocker: A++(Bloqueo)
-    * High: A+(Crítico) A(Muy Importante)
-    * Low: B(Importante) C(Minor)
+* **PrintMetrics**: generate a Markdown table with all metrics for all projects. Example:
+
+Project |Realibility |Maintainability |Security |Unit Coverage |Mutation Coverage |Integration Coverage |Scope Change |Committed vs Delivered |Velocity |Bugs Fix Time |
+ |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
+ |**Bloqueos** |A |A |A |89 |71 |2 |-2.58% |80.95% |20 |B N/A; H 0.02d; L 0.20d |
+
+<details>
+<summary>Bloqueos Quality Info</summary>
+
+Artifact |Realibility |Maintainability |Security |Unit Coverage |Mutation Coverage |Integration Coverage |
+ |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
+ |**mic-compliance** |A |A |A |89 |71 |2 |
+
+</details>
+
+## Scripts
+* **JiraMetrics**
+    * Information about key metrics of the last 6 sprints:
+        * Scope change: are tickets being added or removed after sprint has started?
+        * Commited vs delivered: when the sprint finished, did the team finished all the tickets they committed to?
+        * Velocity: how many story points the team is able to complete per sprint?
+    * Information about time to fix bugs by category
+* **GitHub**
+    * Information about mutation and integration testing coverage (gather from Github).
+* **Sonar**
+    * Information about code quality and unit testing coverage (gather from SonarCloud). 
  
       
