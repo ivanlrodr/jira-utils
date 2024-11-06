@@ -1,5 +1,5 @@
 # jira-utils
-Collection of python scripts to generate some reports from Jira. 
+Collection of python scripts to generate different reports per project using data from Jira, Github and Sonarcloud. 
 
 ## Prerequisites
 * Python 3: https://www.python.org/downloads/
@@ -27,7 +27,7 @@ password = 'secretPassword'
 token = 'xo3dñlxoxoo45'
 ```
 
-You should also edit the list of projects with their artifacts (dictionary *artifacts*) and their Jira keys (dictionary *jira_keys*) in *PrintMetrics.py*
+You could also edit the list of projects with their artifacts (dictionary *artifacts*) and their Jira keys (dictionary *jira_keys*) in *PrintMetrics.py* to include any other projects:
 ```python
 # artifacts = { 'Project Name' : { 'repo-name' : 'sonar-repo-name'}}
 artifacts = {'Bloqueos' : {'mic-compliance': 'inditexcodingfashion_MICCOMPLIA'}}
@@ -50,7 +50,11 @@ TRACEMUL: bug types ("B(Importante)", "C(Menor)") during last 90 days. Number of
 ```
 
 ## Reports
-* **PrintMetrics**: generate a Markdown table with all metrics for all projects. Example:
+* **PrintMetrics**: generates a Markdown table with all metrics for all projects. The script also accepts project names as parameters:
+```bash
+ivan@PRT-ILOPEZ:~/repos/jira-utils$ python3 JiraMetrics.py Bloqueos
+```
+Example of the generated report *metrics_report.md*:
 
 Project |Realibility |Maintainability |Security |Unit Coverage |Mutation Coverage |Integration Coverage |Scope Change |Committed vs Delivered |Velocity |Bugs Fix Time |
  |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |:----: |
@@ -71,7 +75,7 @@ Artifact |Realibility |Maintainability |Security |Unit Coverage |Mutation Covera
         * Scope change: are tickets being added or removed after sprint has started?
         * Commited vs delivered: when the sprint finished, did the team finished all the tickets they committed to?
         * Velocity: how many story points the team is able to complete per sprint?
-    * Information about time to fix bugs by category
+    * Information about the time to fix bugs by category.
 * **GitHub**
     * Information about mutation and integration testing coverage (gather from Github).
 * **Sonar**
