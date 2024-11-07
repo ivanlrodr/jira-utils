@@ -20,7 +20,7 @@ test_url = 'https://sonarcloud.io/api/measures/component'
 
 
 def gather_sonar_metrics(projects):
-    conversion_to_letters = {"1" :"A", "2" : "B", "3" : "C"}
+    conversion_to_letters = {"1" :"A", "2" : "B", "3" : "C", "4" : "D", "5" : "E"}
     all_results = {}
     for project in projects:
         metrics_per_project = {}
