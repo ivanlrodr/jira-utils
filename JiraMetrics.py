@@ -130,3 +130,4 @@ if __name__ == "__main__":
     sprint_metrics = gather_sprint_metrics(projects)
     print(sprint_metrics)
     bug_metrics = gather_bugs_time_metrics(projects)
+    print(bug_metrics)
