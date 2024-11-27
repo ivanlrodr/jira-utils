@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>Snapshots for {{results[0].project_name}}</title>
+</head>
+</head>
+<body>
+<style>
+
+#projects {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-size:16;
+}
+
+#projects td, #projects th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#projects tr:nth-child(even){background-color: #f2f2f2;}
+
+#projects tr:hover {background-color: #ddd;}
+
+#projects th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+ 
+  background-color: #04AA6D;
+  color: white;
+}
+    
+</style>
+<table id="projects">
+    <thead>
+    <tr>
+        {% for column_name in column_names %}
+            <th>{{column_name}}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    
+    <tbody>
+        {% for result in results %} 
+        <tr>
+            <td>{{result.project_name}}</td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.created}}</a></td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.reliability_rating}}</a></td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.sqale_rating}}</a></td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.security_rating}}</a></td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.coverage}}</a></td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.mutation}}</a></td>
+            <td><a href='{{ url_for('detail') }}?project_run_id="{{result.id}}"'>{{result.integration}}</a></td>
+            <td>{{result.scope_change}}</td>
+            <td>{{result.committed_vs_delivered}}</td>
+            <td>{{result.velocity}}</td>
+            <td>{{result.bugs_fix_time}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

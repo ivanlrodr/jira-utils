@@ -1,0 +1,122 @@
+<html>
+<head>
+  <title>Detail information for a snapshot of project {{results[0].project_name}}</title>
+</head>
+</head>
+<body>
+<style>
+
+#projects {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-size:16;
+}
+
+#projects td, #projects th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#projects tr:nth-child(even){background-color: #f2f2f2;}
+
+#projects tr:hover {background-color: #ddd;}
+
+#projects th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+ 
+  background-color: #04AA6D;
+  color: white;
+}
+
+#artifacts {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:14;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#artifacts td, #projects th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#artifacts tr:nth-child(even){background-color: #f2f2f2;}
+
+#artifacts tr:hover {background-color: #ddd;}
+
+#artifacts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+ 
+  background-color: #ad49f0;
+  color: white;
+}
+    
+</style>
+<table id="projects">
+    <thead>
+    <tr>
+        {% for column_name in column_names %}
+            <th>{{column_name}}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    
+    <tbody>
+        {% for result in results %} 
+        <tr>
+            <td>{{result.project_name}}</td>
+            <td>{{result.created}}</td>
+            <td>{{result.reliability_rating}}</td>
+            <td>{{result.sqale_rating}}</td>
+            <td>{{result.security_rating}}</td>
+            <td>{{result.coverage}}</td>
+            <td>{{result.mutation}}</td>
+            <td>{{result.integration}}</td>
+            <td>{{result.scope_change}}</td>
+            <td>{{result.committed_vs_delivered}}</td>
+            <td>{{result.velocity}}</td>
+            <td>{{result.bugs_fix_time}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<br>
+<br>
+Detail per artifact:
+<table id="artifacts">
+  <thead>
+  <tr>
+      {% for column_name in column_artifact_names %}
+          <th>{{column_name}}</th>
+      {% endfor %}
+  </tr>
+  </thead>
+  
+  <tbody>
+      {% for artifact in artifacts %} 
+      <tr>
+          <td><a href="https://github.com/inditex/{{artifact.repo}}">{{artifact.repo}}</a></td>
+          <td>{{artifact.created}}</td>
+          <td>{{artifact.reliability_rating}}</td>
+          <td>{{artifact.sqale_rating}}</td>
+          <td>{{artifact.security_rating}}</td>
+          <td>{{artifact.coverage}}</td>
+          <td>{{artifact.mutation}}</td>
+          <td>{{artifact.integration}}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>

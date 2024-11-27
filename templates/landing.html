@@ -1,0 +1,20 @@
+<html>
+<head>
+  <title>Finish Product's Metrics</title>
+</head>
+</head>
+<body>
+
+<form action="/project" method="get">
+  <label for="project-select">Choose a project:</label>
+  <select name="project_name" id="project-select">
+    <option value="">--Please choose an option--</option>
+    {% for project_name in projects %}
+      <option value='{{project_name}}'><a href='{{ url_for('project') }}?project="{{project_name}}"'>{{project_name}}</a></option>
+    {% endfor %}
+  </select>
+  <button name="submit" type="submit">Go!</button>
+</form>
+
+</body>
+</html>
