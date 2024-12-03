@@ -12,11 +12,11 @@ artifacts = {'TM' : {'bat-testgmana' : 'inditexcodingfashion_TMBATCH', 'lib-samp
              'LQC' : {'mic-icbflqc' : 'inditexcodingfashion_ICBFLQC', 'mob-icmclqcios' : 'inditexcodingfashion_ICMCLQCIOS', 'mlb-icmmlqcios' : 'inditexcodingfashion_ICMMLQCIOS'},
              'Calidad' : {"lib-measuretable" : "inditexcodingfashion_ICPRCPPMTL", "mic-icbffppcrt" : "inditexcodingfashion_ICBFFPPCRT", "mic-measurementapi" : "inditexcodingfashion_ICPRCPPMA", "mlb-icmmmeasureios" : "inditexcodingfashion_ICMMMEASUR", "mlb-icmmqualityios" : "inditexcodingfashion_ICMMQUALIT", "mob-icmcqualityios" : "inditexcodingfashion_ICMCQUALIT", "spa-icmffppcrt" : "inditexcodingfashion_ICMFFPPCRT"}}
 
-jira_keys = {'PSM' : 'JOINLIFEMG', 
-             'TM' : 'TESTGMANA', 
-             'Bloqueos' : 'TRACEMUL', 
-             'VSC' : 'ICPRFPSCVW', 
-             'LQC' : 'ICPRLQC', 
+jira_keys = {'PSM' : 'JOINLIFEMG',
+             'TM' : 'TESTGMANA',
+             'Bloqueos' : 'TRACEMUL',
+             'VSC' : 'ICPRFPSCVW',
+             'LQC' : 'ICPRLQC',
              'Calidad' : 'ICPRFPPCRT'}
 
 ### Information about metrics
@@ -38,7 +38,7 @@ def create_table(metrics_all_projects, first_column, columns):
 
     add_lines(lines, columns)
     column_divs = [":----:"]
-    for colum in columns: 
+    for colum in columns:
         column_divs.append(":----:")
     add_lines(lines, column_divs)
 

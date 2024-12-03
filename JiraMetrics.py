@@ -8,21 +8,21 @@ Install:
 Author: Ivan Lopez Rodriguez
 """
 from datetime import datetime
-from jira import JIRA 
+from jira import JIRA
 import os
 
 INITIAL_POINTS_FIELD_NAME = "customfield_19377"
 FINISHED_POINTS_FIELD_NAME = "customfield_19378"
 ADDED_POINTS_FIELD_NAME = "customfield_35462"
 REMOVED_POINTS_FIELD_NAME = "customfield_35463"
-jiraOptions = {'server': "https://jira.inditex.com/jira/"} 
+jiraOptions = {'server': "https://jira.inditex.com/jira/"}
 # You can introduce your own user and password in the next two lines
 # user = "ivanlrodr@ext.inditex.com"
 # password = "yourPassword"
 user = os.getenv('USUARIO')
 password = os.getenv('PASSWORD')
 
-jira = JIRA(options=jiraOptions, basic_auth=(user, password)) 
+jira = JIRA(options=jiraOptions, basic_auth=(user, password))
 
 MAX_SPRINTS = 6
 MAX_RESULTS = 500
@@ -36,7 +36,7 @@ priority_types = {'"A++(Bloqueo)"' : "B", '"A+(Crítico)", "A(Muy Importante)"' 
 
 def gather_sprint_metrics(projects):
     results = {}
-    
+
     for project in projects:
         results[project] = {}
         results[project]["metrics"] = {}
@@ -75,8 +75,8 @@ def gather_bugs_time_metrics(projects):
         results[project]={}
         results[project]["metrics"] = {}
         result_text = ""
-        for priority in priority_types.keys(): 
-            
+        for priority in priority_types.keys():
+
             # Find all issues for a given priority for a given proyect
             issues = jira.search_issues(jql_str='project = {} AND issuetype = Bug AND '
                 'created > startOfDay(-{}) AND resolution = Fixed '

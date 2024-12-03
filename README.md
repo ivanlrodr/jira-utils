@@ -9,6 +9,14 @@ Collection of python scripts to generate different reports per project using dat
     ```bash
     pip install jira
     ```
+* Recommended to use Poetry, if you do, after cloning you just need to run 
+
+    ```bash
+    poetry install
+    ```
+And automatically will install the depedencies defined in your pyproject.toml file
+
+* Before you do that you might want to setup your local setup for Python as explained in official docs: https://lde.docs.inditex.dev/lde/latest/getting-started/initial-setup/setup.variant_python.html?hl=null
 
 ## Before Running the Scripts
 You need to call the scripts using your username and password and personal tokens. The scripts read these information from environment variables so there are two options: create your own environment variables or overwriting these commands with your personal information. You will need to update user and password in *JiraMetrics.py*, the token for sonar in *Sonar.py* and the Github token in *GitHub.py*.
